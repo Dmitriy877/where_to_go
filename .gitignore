@@ -1,6 +1,6 @@
 # Byte-compiled / optimized / DLL files
 .env
-yandex_afisha_env
+where_to_go_env
 __pycache__/
 *.py[cod]
 *$py.class

@@ -24,3 +24,18 @@ class Place(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+
+class Place_picture(models.Model):
+    number = models.IntegerField(db_index=True)
+    place = models.ForeignKey(
+        Place,
+        verbose_name='Локация',
+        on_delete=models.CASCADE
+    )
+    picture = models.ImageField(
+        upload_to='place_pictures/',
+    )
+
+    def __str__(self):
+        return f'{self.number} {self.place}'
