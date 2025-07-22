@@ -21,6 +21,10 @@ class Place(models.Model):
     coordinates_lat = models.FloatField(
         'Координаты широты',
     )
+    place_id = models.CharField(
+        'place id',
+        max_length=50,
+    )
 
     def __str__(self):
         return f'{self.title}'
@@ -31,7 +35,8 @@ class Place_picture(models.Model):
     place = models.ForeignKey(
         Place,
         verbose_name='Локация',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='pictures'
     )
     picture = models.ImageField(
         upload_to='place_pictures/',
