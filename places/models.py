@@ -7,6 +7,7 @@ class Place(models.Model):
     title = models.CharField(
         'Наименование',
         max_length=50,
+        db_index=True
     )
     description_short = models.TextField(
         'Короткое описание',
@@ -26,6 +27,11 @@ class Place(models.Model):
         max_length=50,
     )
 
+    class Meta:
+        ordering = ['title']
+        verbose_name = "Локация"
+        verbose_name_plural = "Локации"
+
     def __str__(self):
         return f'{self.title}'
 
@@ -41,6 +47,11 @@ class Place_picture(models.Model):
     picture = models.ImageField(
         upload_to='place_pictures/',
     )
+
+    class Meta:
+        ordering = ['number']
+        verbose_name = "Картинка"
+        verbose_name_plural = "Картинки"
 
     def __str__(self):
         return f'{self.number} {self.place}'

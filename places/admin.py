@@ -1,9 +1,11 @@
 from django.contrib import admin
 from places.models import Place, Place_picture
 from django.utils.html import format_html
+from adminsortable2.admin import SortableAdminMixin
+from adminsortable2.admin import SortableTabularInline
 
 
-class Place_pictureInLine(admin.TabularInline):
+class Place_pictureInLine(SortableTabularInline, admin.TabularInline):
     model = Place_picture
     readonly_fields = [
             'get_picture_image',
@@ -16,7 +18,7 @@ class Place_pictureInLine(admin.TabularInline):
 
 
 @admin.register(Place_picture)
-class Place_PictureAdmin(admin.ModelAdmin):
+class Place_PictureAdmin(SortableAdminMixin, admin.ModelAdmin):
     try:
         readonly_fields = [
             'get_picture_image',
@@ -31,7 +33,7 @@ class Place_PictureAdmin(admin.ModelAdmin):
 
 
 @admin.register(Place)
-class PlaceAdmin(admin.ModelAdmin):
+class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
     try:
         inlines = [
             Place_pictureInLine
