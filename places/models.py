@@ -1,8 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
 
-# Create your models here
-
 
 class Place(models.Model):
     title = models.CharField(
@@ -30,8 +28,8 @@ class Place(models.Model):
 
     class Meta:
         ordering = ['title']
-        verbose_name = "Локация"
-        verbose_name_plural = "Локации"
+        verbose_name = 'Локация'
+        verbose_name_plural = 'Локации'
 
     def __str__(self):
         return f'{self.title}'
@@ -51,8 +49,8 @@ class Place_picture(models.Model):
 
     class Meta:
         ordering = ['number']
-        verbose_name = "Картинка"
-        verbose_name_plural = "Картинки"
+        verbose_name = 'Картинка'
+        verbose_name_plural = 'Картинки'
 
     def __str__(self):
         return f'{self.number} {self.place}'

@@ -7,29 +7,30 @@ from django.urls import reverse
 
 
 def start_page(request):
+
     places = Place.objects.all()
     places_for_index = []
 
     for place in places:
 
         place_for_index = {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [place.coordinates_lng, place.coordinates_lat]
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [place.coordinates_lng, place.coordinates_lat]
             },
-            "properties": {
-                "title": place.title,
-                "placeId": place.place_id,
-                "detailsUrl": reverse(place_page, args=[place.id])
+            'properties': {
+                'title': place.title,
+                'placeId': place.place_id,
+                'detailsUrl': reverse(place_page, args=[place.id])
             }
         }
 
         places_for_index.append(place_for_index)
 
     places_json = {
-      "type": "FeatureCollection",
-      "features": places_for_index
+      'type': 'FeatureCollection',
+      'features': places_for_index
     }
 
     template = loader.get_template('index.html')
@@ -48,13 +49,13 @@ def place_page(request, id: int):
     ]
 
     json_place = {
-        "title": place.title,
-        "imgs": pictures_urls,
-        "description_short": place.description_short,
-        "description_long": place.description_long,
-        "coordinates": {
-            "lng": place.coordinates_lng,
-            "lat": place.coordinates_lat
+        'title': place.title,
+        'imgs': pictures_urls,
+        'description_short': place.description_short,
+        'description_long': place.description_long,
+        'coordinates': {
+            'lng': place.coordinates_lng,
+            'lat': place.coordinates_lat
         }
     }
 

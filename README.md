@@ -31,6 +31,35 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+* Имеется возможность добавляьть места при помощи ссылки на json файл. json файл должен быть типа 
+```python
+{
+    "title": "Генератор Маркса или «Катушка Тесла»",
+    "imgs": [
+        "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/d3b5cc74cc94c802b51c85542b2f9ad5.jpg",
+        "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/b742b82f77028d6a8c9be681cab25a3d.jpg",
+        "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/57f990fd24a55324fc1fc541cac41b99.jpg",
+        "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/2d5be0d4e83fdde3e8c98f18e0d2e365.jpg",
+        "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/d4a8ab43eff1f7e83491610682d13984.jpg",
+        "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/7945e1e565530ab6943c40d64f21cfb7.jpg"
+    ],
+    "description_short": "Место, в котором рождаются искусственные молнии и облака.",
+    "description_long": "<p>Внешний вид этого монстроподобного, внушительного комплекса заставляет сердца посетителей биться чаще, а некоторое сходство с катушкой Тесла (на самом деле это генератор Аркадьева-Маркса) влечёт сюда всех любителей научпопа, индастриала и других интересующихся. Для того, чтобы попасть на территорию действующего испытательного стенда ВНИЦ ВЭИ, коим и является это окутанное мифами место, рекомендуется договориться с охраной. Несанкционированное попадание в пределы испытаний может повлечь самые серьёзные последствия!</p>",
+    "coordinates": {
+        "lng": "36.88324860715219",
+        "lat": "55.92555463090268"
+    }
+}
+```
+* Команда для добавления места из ссылки на json файл
+```
+python manage.py json_load (Ссылка на json файл)
+```
+* Пример команды для добавления локации;
+```
+python manage.py json_load https://raw.githubusercontent.com/devmanorg/where-to-go-places/refs/heads/master/places/%D0%92%D0%BE%D1%80%D0%BE%D0%B1%D1%8C%D1%91%D0%B2%D1%8B%20%D0%B3%D0%BE%D1%80%D1%8B.json
+```
+
 * Откройте проект по адресу `http://127.0.0.1:8000/`
 * Перейдите во вкладку admin `http://127.0.0.1:8000/admin/` и заполните базу данных (места и фотографии которые будут отображаться на карте. Менять порядок фотографий можно перетаскивая их верх и вниз).
 
@@ -46,7 +75,7 @@ python manage.py runserver
 
 ## Источники данных
 
-Фронтенд получает данные из json файла, который формируется из базы данных. 
+Фронтенд получает данные из json файла, который формируется из базы данных.
 
 При загрузке страницы JS код ищет тег с id `places-geojson`, считывает содержимое и помещает все объекты на карту.
 

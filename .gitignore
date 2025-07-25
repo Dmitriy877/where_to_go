@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+media
+*.sqlite3
 .env
 where_to_go_env
 __pycache__/
