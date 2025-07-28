@@ -11,9 +11,13 @@ class Place(models.Model):
     description_short = models.TextField(
         'Короткое описание',
         max_length=300,
+        null=True,
+        blank=True,
     )
     description_long = HTMLField(
         'Длинное описание',
+        null=True,
+        blank=True,
     )
     coordinates_lng = models.FloatField(
         'Координаты долготы',
