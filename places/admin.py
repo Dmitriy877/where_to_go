@@ -40,5 +40,3 @@ class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
         ]
     except Exception as err:
         print(Exception, err)
-
-# Register your models here.
