@@ -106,12 +106,21 @@ python manage.py json_load https://raw.githubusercontent.com/devmanorg/where-to-
 }
 ```
 
-## Используемые библиотеки
+## Используемые библиотеки фронтенд
 
 * [Leaflet](https://leafletjs.com/) — отрисовка карты
 * [loglevel](https://www.npmjs.com/package/loglevel) для логгирования
 * [Bootstrap](https://getbootstrap.com/) — CSS библиотека
 * [Vue.js](https://ru.vuejs.org/) — реактивные шаблоны на фронтенде
+
+## Используемые библиотеки Бэкенд
+
+* [Django](https://www.djangoproject.com/) — Web Framework
+* [envorons](https://pypi.org/project/environs/) - Библиотека Python для анализа переменных окружения.
+* [django-admin-sortable2 2.2.8](https://pypi.org/project/django-admin-sortable2/) — Этот пакет Django добавляет функциональность для общего упорядочения элементов в списке перетаскиванием
+* [django-tinymce](https://pypi.org/project/django-tinymce/) — это приложение для Django, которое содержит виджет для отображения поля формы в виде редактора TinyMCE.
+* [requests](https://pypi.org/project/requests/) — позволяет легко отправлять запросы HTTP/1.1.
+
 
 ## Цели проекта
 
