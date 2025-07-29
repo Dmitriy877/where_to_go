@@ -35,7 +35,12 @@ class Place(models.Model):
 
 
 class Place_picture(models.Model):
-    number = models.IntegerField(db_index=True)
+    number = models.IntegerField(
+        db_index=True,
+        null=True,
+        blank=True,
+        default=None,
+    )
     place = models.ForeignKey(
         Place,
         verbose_name='Локация',
