@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from places.models import Place, Place_picture
+from places.models import Place, PlacePicture
 from django.core.files.base import ContentFile
 import requests
 
@@ -35,8 +35,11 @@ class Command(BaseCommand):
             number = index+1
             response = requests.get(image_url)
             content = ContentFile(response.content)
-            picture, created = Place_picture.objects.get_or_create(
+            picture, created = PlacePicture.objects.get_or_create(
                 number=number,
                 place=place_location,
             )
-            picture.picture.save(f'{place_location}{number}', content, save=True)
+            picture.picture.save(
+                f'{place_location}{number}',
+                content, save=True
+            )

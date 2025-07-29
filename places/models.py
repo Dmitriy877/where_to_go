@@ -34,7 +34,7 @@ class Place(models.Model):
         return self.title
 
 
-class Place_picture(models.Model):
+class PlacePicture(models.Model):
     number = models.IntegerField(
         db_index=True,
         null=True,

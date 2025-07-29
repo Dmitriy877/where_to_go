@@ -1,12 +1,12 @@
 from django.contrib import admin
-from places.models import Place, Place_picture
+from places.models import Place, PlacePicture
 from django.utils.html import format_html
 from adminsortable2.admin import SortableAdminMixin
 from adminsortable2.admin import SortableTabularInline
 
 
-class Place_pictureInLine(SortableTabularInline, admin.TabularInline):
-    model = Place_picture
+class PlacePictureInLine(SortableTabularInline, admin.TabularInline):
+    model = PlacePicture
     readonly_fields = [
             'get_picture_image',
         ]
@@ -19,8 +19,8 @@ class Place_pictureInLine(SortableTabularInline, admin.TabularInline):
         )
 
 
-@admin.register(Place_picture)
-class Place_PictureAdmin(SortableAdminMixin, admin.ModelAdmin):
+@admin.register(PlacePicture)
+class PlacePictureAdmin(SortableAdminMixin, admin.ModelAdmin):
     try:
         readonly_fields = [
             'get_picture_image',
@@ -40,7 +40,7 @@ class Place_PictureAdmin(SortableAdminMixin, admin.ModelAdmin):
 class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
     try:
         inlines = [
-            Place_pictureInLine
+            PlacePictureInLine
         ]
     except Exception as err:
         print(Exception, err)
