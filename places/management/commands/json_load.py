@@ -22,14 +22,17 @@ class Command(BaseCommand):
         except Exception:
             print('Ошибка при загрузке файла')
 
-        place_location, created = Place.objects.get_or_create(
-            title=json_data['title'],
-            description_short=json_data['description_short'],
-            description_long=json_data['description_long'],
-            coordinates_lng=json_data['coordinates']['lng'],
-            coordinates_lat=json_data['coordinates']['lat'],
-            place_id=json_data['title'],
-        )
+        try:
+            place_location, created = Place.objects.get_or_create(
+                title=json_data['title'],
+                short_description=json_data['description_short'],
+                long_description=json_data['description_long'],
+                coordinates_lng=json_data['coordinates']['lng'],
+                coordinates_lat=json_data['coordinates']['lat'],
+            )
+        except Exception:
+            print('Указанная локация уже добавлена')
+
         image_urls = json_data['imgs']
         for index, image_url in enumerate(image_urls):
             number = index+1
