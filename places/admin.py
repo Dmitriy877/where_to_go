@@ -29,7 +29,7 @@ class Place_PictureAdmin(SortableAdminMixin, admin.ModelAdmin):
         def get_picture_image(self, obj):
             picture_url = obj.picture.url
             return format_html(
-                '<img src={} width="200" height=200 />',
+                '<img src={} style="max-height:200; max-width=:200;" />',
                 picture_url,
             )
     except Exception as err:
