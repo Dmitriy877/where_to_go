@@ -12,8 +12,10 @@ class Place_pictureInLine(SortableTabularInline, admin.TabularInline):
         ]
 
     def get_picture_image(self, obj):
+        picture_url = obj.picture.url
         return format_html(
-            f'<img src="{obj.picture.url}" width="200" height=200 />'
+            '<img src={} width="200" height=200 />',
+            picture_url,
         )
 
 
@@ -25,8 +27,10 @@ class Place_PictureAdmin(SortableAdminMixin, admin.ModelAdmin):
         ]
 
         def get_picture_image(self, obj):
+            picture_url = obj.picture.url
             return format_html(
-                f'<img src="{obj.picture.url}" width="200" height=200 />'
+                '<img src={} width="200" height=200 />',
+                picture_url,
             )
     except Exception as err:
         print(Exception, err)
