@@ -51,8 +51,8 @@ def place_page(request, id: int):
     json_place = {
         'title': place.title,
         'imgs': pictures_urls,
-        'description_short': place.description_short,
-        'description_long': place.description_long,
+        'description_short': place.short_description,
+        'description_long': place.long_description,
         'coordinates': {
             'lng': place.coordinates_lng,
             'lat': place.coordinates_lat

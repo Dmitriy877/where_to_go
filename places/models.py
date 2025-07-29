@@ -8,13 +8,13 @@ class Place(models.Model):
         max_length=50,
         db_index=True
     )
-    description_short = models.TextField(
+    short_description = models.TextField(
         'Короткое описание',
         max_length=300,
         null=True,
         blank=True,
     )
-    description_long = HTMLField(
+    long_description = HTMLField(
         'Длинное описание',
         null=True,
         blank=True,
