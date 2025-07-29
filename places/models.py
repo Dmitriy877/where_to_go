@@ -10,7 +10,6 @@ class Place(models.Model):
     )
     short_description = models.TextField(
         'Короткое описание',
-        max_length=300,
         null=True,
         blank=True,
     )
