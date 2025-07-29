@@ -14,7 +14,7 @@ class PlacePictureInLine(SortableTabularInline, admin.TabularInline):
     def get_picture_image(self, obj):
         picture_url = obj.picture.url
         return format_html(
-            '<img src={} width="200" height=200 />',
+            '<img src={} width=200 height=200 />',
             picture_url,
         )
 
@@ -23,6 +23,9 @@ class PlacePictureInLine(SortableTabularInline, admin.TabularInline):
 class PlacePictureAdmin(SortableAdminMixin, admin.ModelAdmin):
     readonly_fields = [
         'get_picture_image',
+    ]
+    raw_id_fields = [
+        'place',
     ]
 
     def get_picture_image(self, obj):
