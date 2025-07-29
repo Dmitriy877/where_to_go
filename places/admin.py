@@ -21,26 +21,20 @@ class PlacePictureInLine(SortableTabularInline, admin.TabularInline):
 
 @admin.register(PlacePicture)
 class PlacePictureAdmin(SortableAdminMixin, admin.ModelAdmin):
-    try:
-        readonly_fields = [
-            'get_picture_image',
-        ]
+    readonly_fields = [
+        'get_picture_image',
+    ]
 
-        def get_picture_image(self, obj):
-            picture_url = obj.picture.url
-            return format_html(
-                '<img src={} style="max-height:200; max-width=:200;" />',
-                picture_url,
-            )
-    except Exception as err:
-        print(Exception, err)
+    def get_picture_image(self, obj):
+        picture_url = obj.picture.url
+        return format_html(
+            '<img src={} style="max-height:200; max-width=:200;" />',
+            picture_url,
+        )
 
 
 @admin.register(Place)
 class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
-    try:
-        inlines = [
-            PlacePictureInLine
-        ]
-    except Exception as err:
-        print(Exception, err)
+    inlines = [
+        PlacePictureInLine
+    ]
