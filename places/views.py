@@ -21,7 +21,7 @@ def start_page(request):
             },
             'properties': {
                 'title': place.title,
-                'placeId': place.place_id,
+                'placeId': place.id,
                 'detailsUrl': reverse(place_page, args=[place.id])
             }
         }

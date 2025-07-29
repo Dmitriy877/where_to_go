@@ -24,10 +24,6 @@ class Place(models.Model):
     coordinates_lat = models.FloatField(
         'Координаты широты',
     )
-    place_id = models.CharField(
-        'place id',
-        max_length=50,
-    )
 
     class Meta:
         ordering = ['title']
