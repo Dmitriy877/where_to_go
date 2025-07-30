@@ -8,10 +8,10 @@ from django.urls import reverse
 
 def start_page(request):
 
-    places = Place.objects.all()
+    all_places = Place.objects.all()
     places_for_index = []
 
-    for place in places:
+    for place in all_places:
 
         place_for_index = {
             'type': 'Feature',
@@ -28,11 +28,11 @@ def start_page(request):
 
         places_for_index.append(place_for_index)
 
-    places_json = {
+    places = {
       'type': 'FeatureCollection',
       'features': places_for_index
     }
-    context = {'places_json': places_json}
+    context = {'places_json': places}
     return render(request, 'index.html', context)
 
 
