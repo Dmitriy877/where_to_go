@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.template import loader
@@ -32,11 +32,8 @@ def start_page(request):
       'type': 'FeatureCollection',
       'features': places_for_index
     }
-
-    template = loader.get_template('index.html')
     context = {'places_json': places_json}
-    rendered_page = template.render(context, request)
-    return HttpResponse(rendered_page)
+    return render(request, 'index.html', context)
 
 
 def place_page(request, id: int):
