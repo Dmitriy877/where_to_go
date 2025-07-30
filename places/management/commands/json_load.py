@@ -19,8 +19,6 @@ class Command(BaseCommand):
             response = requests.get(options['load_picture_from_json'])
             response.raise_for_status()
             payload = response.json()
-            if not response.status_code == requests.codes.ok:
-                raise Exception
         except Exception:
             print('Ошибка при загрузке файла')
 
@@ -38,6 +36,7 @@ class Command(BaseCommand):
         image_urls = payload['imgs']
         for index, image_url in enumerate(image_urls, start=1):
             response = requests.get(image_url)
+            response.raise_for_status()
             content = ContentFile(response.content)
             picture, created = PlacePicture.objects.get_or_create(
                 number=index,
