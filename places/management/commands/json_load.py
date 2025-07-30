@@ -19,6 +19,8 @@ class Command(BaseCommand):
             response = requests.get(options['load_picture_from_json'])
             response.raise_for_status()
             payload = response.json()
+            if not response.status_code == requests.codes.ok:
+                raise Exception
         except Exception:
             print('Ошибка при загрузке файла')
 
