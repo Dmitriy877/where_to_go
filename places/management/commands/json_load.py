@@ -34,15 +34,14 @@ class Command(BaseCommand):
             print('Указанная локация уже добавлена')
 
         image_urls = payload['imgs']
-        for index, image_url in enumerate(image_urls):
-            number = index+1
+        for index, image_url in enumerate(image_urls, start=1):
             response = requests.get(image_url)
             content = ContentFile(response.content)
             picture, created = PlacePicture.objects.get_or_create(
-                number=number,
+                number=index,
                 place=place_location,
             )
             picture.picture.save(
-                f'{place_location}{number}',
+                f'{place_location}{index}',
                 content, save=True
             )
