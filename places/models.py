@@ -4,7 +4,7 @@ from tinymce.models import HTMLField
 
 class Place(models.Model):
     title = models.CharField(
-        max_length=50,
+        max_length=256,
         db_index=True,
         verbose_name='Наименование',
     )
