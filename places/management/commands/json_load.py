@@ -18,22 +18,22 @@ class Command(BaseCommand):
         try:
             response = requests.get(options['load_picture_from_json'])
             response.raise_for_status()
-            json_data = response.json()
+            payload = response.json()
         except Exception:
             print('Ошибка при загрузке файла')
 
         try:
             place_location, created = Place.objects.get_or_create(
-                title=json_data['title'],
-                short_description=json_data['description_short'],
-                long_description=json_data['description_long'],
-                coordinates_lng=json_data['coordinates']['lng'],
-                coordinates_lat=json_data['coordinates']['lat'],
+                title=payload['title'],
+                short_description=payload['description_short'],
+                long_description=payload['description_long'],
+                coordinates_lng=payload['coordinates']['lng'],
+                coordinates_lat=payload['coordinates']['lat'],
             )
         except Exception:
             print('Указанная локация уже добавлена')
 
-        image_urls = json_data['imgs']
+        image_urls = payload['imgs']
         for index, image_url in enumerate(image_urls):
             number = index+1
             response = requests.get(image_url)
