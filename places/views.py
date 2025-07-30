@@ -1,9 +1,7 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
 from django.http import JsonResponse
-from django.template import loader
-from .models import Place
 from django.urls import reverse
+from .models import Place
 
 
 def start_page(request):
@@ -38,8 +36,7 @@ def start_page(request):
 
 def place_page(request, id: int):
 
-    place = get_object_or_404(Place, pk=id)
-
+    place = get_object_or_404(Place.objects.prefetch_related('pictures'), pk=id)
     pictures = place.pictures.all()
     pictures_urls = [
         picture.picture.url for picture in pictures
