@@ -37,12 +37,12 @@ class Command(BaseCommand):
         for index, image_url in enumerate(image_urls, start=1):
             response = requests.get(image_url)
             response.raise_for_status()
-            content = ContentFile(response.content)
+            content = ContentFile(
+                response.content,
+                name=f'{place_location}{index}'
+            )
             picture, created = PlacePicture.objects.get_or_create(
                 number=index,
                 place=place_location,
-            )
-            picture.picture.save(
-                f'{place_location}{index}',
-                content, save=True
+                picture=content,
             )
