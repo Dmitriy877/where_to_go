@@ -27,10 +27,12 @@ class Command(BaseCommand):
         try:
             place_location, created = Place.objects.get_or_create(
                 title=payload['title'],
-                short_description=payload['description_short'],
-                long_description=payload['description_long'],
                 coordinates_lng=payload['coordinates']['lng'],
                 coordinates_lat=payload['coordinates']['lat'],
+                defaults={
+                    'short_description': payload['description_short'],
+                    'long_description': payload['description_long'],
+                }
             )
         except Exception:
             print('Указанная локация уже добавлена')
@@ -39,6 +41,7 @@ class Command(BaseCommand):
 
         for index, image_url in enumerate(image_urls, start=1):
             step = 0
+            reconnect_time_seconds = 10
             while step <= len(image_urls):
                 try:
                     response = requests.get(image_url)
@@ -58,5 +61,5 @@ class Command(BaseCommand):
                     continue
                 except ConnectionError:
                     print('Ошибка соединения. Попытка установить соединение')
-                    time.sleep(10)
+                    time.sleep(reconnect_time_seconds)
                     continue
