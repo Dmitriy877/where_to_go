@@ -35,9 +35,8 @@ class Place(models.Model):
 class PlacePicture(models.Model):
     number = models.IntegerField(
         db_index=True,
-        null=True,
         blank=True,
-        default=None,
+        default=0,
     )
     place = models.ForeignKey(
         Place,
