@@ -42,7 +42,7 @@ def place_page(request, id: int):
         picture.picture.url for picture in pictures
     ]
 
-    place_serialize = {
+    serialized_place = {
         'title': place.title,
         'imgs': pictures_urls,
         'description_short': place.short_description,
@@ -53,7 +53,7 @@ def place_page(request, id: int):
         }
     }
 
-    response = JsonResponse(place_serialize, json_dumps_params={
+    response = JsonResponse(serialized_place, json_dumps_params={
                                         'indent': 2,
                                         'ensure_ascii': False,
                                      })
