@@ -58,6 +58,7 @@ class Command(BaseCommand):
                     step += 1
                 except HTTPError:
                     print(f'Ошибка загрузки изображения по адресу {image_url}. Проверьте правильность указания ссылок')
+                    step += 1
                     continue
                 except ConnectionError:
                     print('Ошибка соединения. Попытка установить соединение')
