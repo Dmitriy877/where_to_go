@@ -6,10 +6,10 @@ from .models import Place
 
 def start_page(request):
 
-    all_places = Place.objects.all()
-    places_for_index = []
+    places = Place.objects.all()
+    places_list = []
 
-    for place in all_places:
+    for place in places:
 
         place_for_index = {
             'type': 'Feature',
@@ -24,13 +24,13 @@ def start_page(request):
             }
         }
 
-        places_for_index.append(place_for_index)
+        places_list.append(place_for_index)
 
-    places = {
+    places_dict = {
       'type': 'FeatureCollection',
-      'features': places_for_index
+      'features': places_list
     }
-    context = {'places_json': places}
+    context = {'places_json': places_dict}
     return render(request, 'index.html', context)
 
 
