@@ -40,9 +40,8 @@ class Command(BaseCommand):
         image_urls = payload['imgs']
 
         for index, image_url in enumerate(image_urls, start=1):
-            step = 0
             reconnect_time_seconds = 10
-            while step <= len(image_urls):
+            for i in range(3):
                 try:
                     response = requests.get(image_url)
                     response.raise_for_status()
@@ -55,10 +54,8 @@ class Command(BaseCommand):
                         place=place_location,
                         picture=content,
                     )
-                    step += 1
                 except HTTPError:
                     print(f'Ошибка загрузки изображения по адресу {image_url}. Проверьте правильность указания ссылок')
-                    step += 1
                     continue
                 except ConnectionError:
                     print('Ошибка соединения. Попытка установить соединение')
