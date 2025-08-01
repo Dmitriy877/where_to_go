@@ -7,7 +7,7 @@ from .models import Place
 def start_page(request):
 
     places = Place.objects.all()
-    places_list = []
+    places_collections = []
 
     for place in places:
 
@@ -24,13 +24,13 @@ def start_page(request):
             }
         }
 
-        places_list.append(place_for_index)
+        places_collections.append(place_for_index)
 
-    places_dict = {
+    places_features = {
       'type': 'FeatureCollection',
-      'features': places_list
+      'features': places_collections
     }
-    context = {'places_json': places_dict}
+    context = {'places_json': places_features}
     return render(request, 'index.html', context)
 
 
