@@ -54,9 +54,10 @@ class Command(BaseCommand):
                         place=place_location,
                         picture=content,
                     )
+                    break
                 except HTTPError:
                     print(f'Ошибка загрузки изображения по адресу {image_url}. Проверьте правильность указания ссылок')
-                    continue
+                    break
                 except ConnectionError:
                     print('Ошибка соединения. Попытка установить соединение')
                     time.sleep(reconnect_time_seconds)
